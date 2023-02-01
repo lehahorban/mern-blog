@@ -13,6 +13,7 @@ export const createComment = async (req, res) => {
       await Post.findByIdAndUpdate(postId, {
         $push: { comments: newComment._id },
       });
+
       res.json(newComment);
     } catch (error) {
       console.log(error);
