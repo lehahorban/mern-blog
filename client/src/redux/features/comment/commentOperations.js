@@ -22,7 +22,27 @@ export const getComment = createAsyncThunk(
   async (postId) => {
     try {
       const { data } = await axios.get(`/posts/comments/${postId}`);
-      console.log(data);
+      const checkNull = data.includes(null);
+      if (checkNull) {
+        return data.filter((el) => el !== null);
+      }
+
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const removeComment = createAsyncThunk(
+  "comment/removeComment",
+  async (commentId) => {
+    try {
+      const { data } = await axios.delete(
+        `/posts/delete/${commentId}`,
+        commentId
+      );
+
       return data;
     } catch (error) {
       console.log(error);

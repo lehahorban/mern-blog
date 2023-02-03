@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 import Layout from "./components/Layout";
 import MainPage from "./pages/MainPage";
@@ -15,15 +15,13 @@ import LoginPage from "./pages/LoginPage";
 
 import { currentUser } from "./redux/features/auth/authOperations";
 
-
-
 function App() {
   const dispatch = useDispatch();
 
-  useEffect(() => {   
-  dispatch(currentUser())    
+  useEffect(() => {
+    dispatch(currentUser());
   }, [dispatch]);
-  
+
   return (
     <div>
       <Layout>
@@ -34,10 +32,10 @@ function App() {
           <Route path=":id/edit" element={<EditPostPage />}></Route>
           <Route path="new" element={<AddPostPage />}></Route>
           <Route path="register" element={<RegisterPage />}></Route>
-          <Route path="login" element={<LoginPage/>}></Route>
+          <Route path="login" element={<LoginPage />}></Route>
         </Routes>
         <ToastContainer position="bottom-right"></ToastContainer>
-     </Layout>
+      </Layout>
     </div>
   );
 }

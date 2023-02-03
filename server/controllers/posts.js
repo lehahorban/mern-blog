@@ -134,12 +134,28 @@ export const getPostComments = async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
     const list = await Promise.all(
-      post.comments.map((comment) => {
-        return Comment.findById(comment);
-      })
+      post.comments
+        .filter((el) => el !== null)
+        .map((comment) => {
+          return Comment.findById(comment);
+        })
     );
+
+    console.log(list);
+
     res.json(list);
   } catch (error) {
     res.json("Щось пішло не так");
   }
+};
+
+export const removeComment = async (req, res, next) => {
+  const commentId = req.params.id;
+  if (!commentId) {
+    console.log("Помилка");
+    return;
+  }
+  const result = await Comment.findOneAndDelete(commentId);
+
+  res.json(result);
 };

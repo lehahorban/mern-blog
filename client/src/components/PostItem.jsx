@@ -38,7 +38,7 @@ const PostItem = ({ post }) => {
           </button>
           <button className="flex justify-center items-center gap-2 text-xs text-white opacity-50">
             <AiOutlineMessage />
-            <span>{post.comment?.length || 0}</span>
+            <span>{post.comments?.length || 0}</span>
           </button>
         </div>
       </div>
